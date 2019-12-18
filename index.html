@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CzarK</title>
+</head>
+<body>
+    <pre>
+        const d = document; // caminho direto para o DOM;
+
+//Objeto que contêm métodos muito utilizados de obter dados da página ou navegador
+let get = {
+    /**
+     * Método que retorna um elemento da página com base em um  Id selecionado pelo usuario
+     * em forma de String.
+     * @param { <tag id="item"></tag> } item tag em forma de String, será utilizada no método
+     *                                       para obtenção de dados no DOM.
+     */
+    Id(item) {
+        return d.getElementById(item)
+    },
+    /**
+     * Método que retorna um arrays de elementos da página que coincidirem com a classe
+     * selecionada pelo usuario em forma de String.
+     * @param { [<tag class="item"></tag>, ...] } item Classe em forma de String, será
+     *                               utilizada no método para obtenção de dados no DOM.
+     */
+    Classes(item) {
+        return d.getElementsByClassName(item)
+    },
+    /**
+     * Método que retorna o primeiro elemento da página que coincidir com o query selecionado
+     * pelo usuario em forma de String. Pode receber Id's e Classes, porém com os respectivos
+     * prefixos de cada um.
+     * @param {<item class="item" "id="item"></item>} item query em
+     *                 forma de String, será utilizada no método para obtenção de dados no DOM.
+     */
+    Query(item) {
+        return d.querySelector(item)
+    },
+    /**
+     * Método que retorna um arrays de elementos da página que coincidirem com a query
+     * selecionada pelo usuario em forma de String.  Pode receber Classes, porém com o 
+     * prefixo.
+     * @param {[<item class="item" id="item"></item>], ...} item query em forma de String,
+     *                             será utilizada no método para obtenção de dados no DOM.
+     */
+    Queries(item) {
+        return d.querySelectorAll(item)
+    },
+    /**
+     * Método que retorna a data atual em milissegundos.
+     */
+    Time() {
+        return new Date().getTime()
+    },
+    /**
+     * Objeto com metodos de obtenção de dados das API's de armazenamento imbutidas no
+     * navegador: localStorage e sessionStorage.
+     */
+    itensFrom: {
+        /**
+         * @param { [...] ou {...} } id Identificador salvo na sessionStorage
+         */
+        Session(id) {
+            return JSON.parse(sessionStorage.getItem(id))
+        },
+        /**
+         * @param { [...] ou {...} } id identificador salvo na localStorage
+         */
+        Local(id) {
+            return JSON.parse(localStorage.getItem(id))
+        }
+    }
+}
+
+
+    </pre>
+</body>
+</html>
