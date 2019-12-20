@@ -2,6 +2,7 @@ const d = document; // caminho direto para o DOM;
 
 //Objeto que contêm métodos muito utilizados de obter dados da página ou navegador
 let get = {
+
     /**
      * Método que retorna um elemento da página com base em um  Id selecionado pelo usuario
      * em forma de String.
@@ -11,6 +12,8 @@ let get = {
     Id(item) {
         return d.getElementById(item)
     },
+
+
     /**
      * Método que retorna um arrays de elementos da página que coincidirem com a classe
      * selecionada pelo usuario em forma de String.
@@ -20,6 +23,8 @@ let get = {
     Classes(item) {
         return d.getElementsByClassName(item)
     },
+
+
     /**
      * Método que retorna o primeiro elemento da página que coincidir com o query selecionado
      * pelo usuario em forma de String. Pode receber Id's e Classes, porém com os respectivos
@@ -30,6 +35,8 @@ let get = {
     Query(item) {
         return d.querySelector(item)
     },
+
+
     /**
      * Método que retorna um arrays de elementos da página que coincidirem com a query
      * selecionada pelo usuario em forma de String.  Pode receber Classes, porém com o 
@@ -40,23 +47,31 @@ let get = {
     Queries(item) {
         return d.querySelectorAll(item)
     },
+
+
     /**
      * Método que retorna a data atual em milissegundos.
      */
     Time() {
         return new Date().getTime()
     },
+
+
     /**
      * Objeto com metodos de obtenção de dados das API's de armazenamento imbutidas no
      * navegador: localStorage e sessionStorage.
      */
     itensFrom: {
+
+
         /**
          * @param { [...] ou {...} } id Identificador salvo na sessionStorage
          */
         Session(id) {
             return JSON.parse(sessionStorage.getItem(id))
         },
+
+
         /**
          * @param { [...] ou {...} } id identificador salvo na localStorage
          */
@@ -65,4 +80,20 @@ let get = {
         }
     }
 }
+/**
+ * Contêm métodos que salvam dados na local e na session Storages
+ */
+let set = {
+    Local(key, value) {
+        localStorage.setItem(key, JSON.stringify(value))
+    }
+}
 
+/**
+ * 
+ * @param {"input", "onkeyup"} event evento que será ouvido pela função
+ * @param {() => {} } func função que sera executada quando o evento for ouvido na página
+ */
+function listen(event, func) {
+    d.addEventListener(event, func);
+}
