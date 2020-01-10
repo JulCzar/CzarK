@@ -1,3 +1,10 @@
+/**
+ * JulCzar javascript framework
+ * Made by Júlio César Barcelo Monteiro
+ * Date: 12/19/2018
+ * Last Edit: 01/09/2019
+ */
+
 const d = document; // caminho direto para o DOM;
 
 //Objeto que contêm métodos muito utilizados de obter dados da página ou navegador
@@ -10,7 +17,7 @@ let get = {
      *                                       para obtenção de dados no DOM.
      */
     Id(item) {
-        return d.getElementById(item)
+        return d.getElementById(item);
     },
 
 
@@ -21,7 +28,7 @@ let get = {
      *                               utilizada no método para obtenção de dados no DOM.
      */
     Classes(item) {
-        return d.getElementsByClassName(item)
+        return d.getElementsByClassName(item);
     },
 
 
@@ -33,7 +40,7 @@ let get = {
      *                 forma de String, será utilizada no método para obtenção de dados no DOM.
      */
     Query(item) {
-        return d.querySelector(item)
+        return d.querySelector(item);
     },
 
 
@@ -45,39 +52,35 @@ let get = {
      *                             será utilizada no método para obtenção de dados no DOM.
      */
     Queries(item) {
-        return d.querySelectorAll(item)
+        return d.querySelectorAll(item);
     },
 
 
     /**
      * Método que retorna a data atual em milissegundos.
      */
-    Time() {
-        return new Date().getTime()
+    Date() {
+        return new Date().getTime();
     },
 
 
-    /**
-     * Objeto com metodos de obtenção de dados das API's de armazenamento imbutidas no
+    /**obtém de dados das API's de armazenamento imbutidas no
      * navegador: localStorage e sessionStorage.
+     * 
+     * @param { [...] ou {...} } id Identificador salvo na sessionStorage
      */
-    itensFrom: {
+    Session(id) {
+        return JSON.parse(sessionStorage.getItem(id));
+    },
 
 
-        /**
-         * @param { [...] ou {...} } id Identificador salvo na sessionStorage
-         */
-        Session(id) {
-            return JSON.parse(sessionStorage.getItem(id))
-        },
-
-
-        /**
-         * @param { [...] ou {...} } id identificador salvo na localStorage
-         */
-        Local(id) {
-            return JSON.parse(localStorage.getItem(id))
-        }
+    /**obtém de dados das API's de armazenamento imbutidas no
+     * navegador: localStorage e sessionStorage.
+     * 
+     * @param { [...] ou {...} } id identificador salvo na localStorage
+     */
+    Local(id) {
+        return JSON.parse(localStorage.getItem(id));
     }
 }
 /**
@@ -85,7 +88,10 @@ let get = {
  */
 let set = {
     Local(key, value) {
-        localStorage.setItem(key, JSON.stringify(value))
+        localStorage.setItem(key, JSON.stringify(value));
+    },
+    Session(key, value) {
+        sessionStorage.setItem(key, JSON.stringify(value));
     }
 }
 
@@ -96,4 +102,16 @@ let set = {
  */
 function listen(event, func) {
     d.addEventListener(event, func);
+}
+
+let remove = {
+    fromLocal(key) {
+        localStorage.removeItem(key)
+    },
+    fromSession(key) {
+        sessionStorage.removeItem(key)
+    },
+    fromArray(arr, elem) {
+        arr.pull(elem)
+    }
 }
