@@ -8,7 +8,7 @@
 const d = document; // caminho direto para o DOM;
 
 //Objeto que contêm métodos muito utilizados de obter dados da página ou navegador
-let get = {
+const get = {
 
     /**
      * Método que retorna um elemento da página com base em um  Id selecionado pelo usuario
@@ -86,7 +86,7 @@ let get = {
 /**
  * Contêm métodos que salvam dados na local e na session Storages
  */
-let set = {
+const set = {
     Local(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
     },
@@ -100,11 +100,11 @@ let set = {
  * @param {"input", "onkeyup"} event evento que será ouvido pela função
  * @param {() => {} } func função que sera executada quando o evento for ouvido na página
  */
-function listen(event, func) {
+const listen = (event, func) => {
     d.addEventListener(event, func);
 }
 
-let remove = {
+const del = {
     fromLocal(key) {
         localStorage.removeItem(key)
     },
@@ -113,10 +113,13 @@ let remove = {
     },
     fromArray(arr, elem) {
         arr.pull(elem)
+    },
+    element(item) {
+        item.remove()
     }
 }
 
-function truncate(str, maxLength) {
+const truncate = (str, maxLength) => {
     if (str.length > maxLength) {
         str = `${str.substring(0, --maxLength)}...`
     }
