@@ -47,8 +47,8 @@ const set = {
     }
 }
 
-const listen = (event, func) => {
-    d.addEventListener(event, func);
+const listen = (event, func, target = d) => {
+    target.addEventListener(event, func);
 }
 
 const del = {
