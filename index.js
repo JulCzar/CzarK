@@ -32,7 +32,7 @@ const get = {
     UrlData(array) {
         const urlParams = new URLSearchParams(location.search);
         let result = new Object()
-        for (const [query] of array) {
+        for (const query of array) {
             result[query] = urlParams.get(query)
         }
         return result
