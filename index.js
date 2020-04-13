@@ -29,10 +29,10 @@ const get = {
     Local(id) {
         return JSON.parse(localStorage.getItem(id));
     },
-    UrlData(array) {
+    UrlData() {
         const urlParams = new URLSearchParams(location.search);
         let result = new Object()
-        for (const query of array) {
+        for (const query of urlParams.keys()) {
             result[query] = urlParams.get(query)
         }
         return result
