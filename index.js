@@ -29,12 +29,13 @@ const get = {
     Local(id) {
         return JSON.parse(localStorage.getItem(id));
     },
-    UrlData() {
-        let urlData = decodeURIComponent(location.search.split('?')[1])
-        urlData = urlData.replace(/=/g, '": "')
-        urlData = urlData.replace(/&/g, '", "')
-        urlData = `{"${urlData}"}`
-        return JSON.parse(urlData)
+    UrlData(array) {
+        const urlParams = new URLSearchParams(location.search);
+        let result = new Object()
+        for (const [query] of array) {
+            result[query] = urlParams.get(query)
+        }
+        return result
     }
 }
 
