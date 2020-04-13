@@ -32,8 +32,8 @@ const get = {
     UrlData() {
         const urlParams = new URLSearchParams(location.search);
         let result = new Object()
-        for (const query of urlParams.keys()) {
-            result[query] = urlParams.get(query)
+        for (const key of urlParams.keys()) {
+            result[key] = urlParams.get(key)
         }
         return result
     }
