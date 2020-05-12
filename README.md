@@ -1,6 +1,6 @@
 # CzarK
 
-This is an project of module to be used and provide easy access to DOM:
+This is a module project to be used and provide easier access to DOM:
 
 ### How it works?
 Instead of use:
