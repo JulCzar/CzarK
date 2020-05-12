@@ -2,39 +2,41 @@
  * JulCzar javascript framework
  * Made by Júlio César Barcelo Monteiro
  * Date: 12/19/2018
- * Last Edit: 05/01/2019
+ * Last Edit: 05/12/2019
  */
 
-const d = document
+const d  = document
+const LS = localStorage
+const SS = sessionStorage
 
 const get = {
   /**
    * Find an Id in the DOM
    * @param {String} item Id you want to be located in the DOM
    */
-  Id (item) {
-    return d.getElementById(item)
+  Id (elementId) {
+    return d.getElementById(elementId)
   },
   /**
    * Find, in the DOM, all Classes that match
-   * @param {String} item Class you want to locate in the DOM
+   * @param {String} item Classes you want to locate in the DOM
    */
-  Classes (item) {
-    return d.getElementsByClassName(item)
+  Classes (classesName) {
+    return d.getElementsByClassName(classesName)
   },
   /**
    * Find the first element that match with the query specified
-   * @param {String} item Query you want to locate
+   * @param {String} elemQuery Query you want to locate
    */
-  Query (item) {
-    return d.querySelector(item)
+  Query (elemQuery) {
+    return d.querySelector(elemQuery)
   },
   /**
    * Find all elements that match with the query specified
-   * @param {String} item Query you want to locate
+   * @param {String} elemQuery Query you want to locate
    */
-  Queries (item) {
-    return d.querySelectorAll(item)
+  Queries (elemQuery) {
+    return d.querySelectorAll(elemQuery)
   },
   /**
    * Gives you the current time in miliseconds
@@ -43,12 +45,13 @@ const get = {
     return new Date().getTime()
   },
   /**
-   * Find in the SessionStorage the key requested and return the value parsed
+   * Find in the SS the key requested and return the value parsed
    * @param {String} key
    * @returns {JSON}
    */
   Session (key) {
-    return JSON.parse(sessionStorage.getItem(key))
+    const value = SS.getItem(key)
+    return JSON.parse(value)
   },
   /**
    * Find in the LocalStorage the key requested and return the value parsed
@@ -56,7 +59,8 @@ const get = {
    * @returns {JSON}
    */
   Local (key) {
-    return JSON.parse(localStorage.getItem(key))
+    const value = LS.getItem(key)
+    return JSON.parse(value)
   },
   /**
    * Locate all the queries in the URL and return it as an Object.
@@ -74,36 +78,38 @@ const get = {
 const set = {
   /**
    * Save in the LocalStorage any value you want to
-   * @param {String} key
-   * @param {*} value
+   * @param {String} key Key where the data will be stored
+   * @param {*} data data to be stored
    */
-  Local (key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
+  Local (key, data) {
+    const value = JSON.stringify(data)
+    LS.setItem(key, value)
   },
   /**
-   * Save in the SessionStorage any value you want to
-   * @param {String} key
-   * @param {*} value
+   * Save in the SS any data
+   * @param {String} key Key where the data will be stored
+   * @param {*} data data to be stored
    */
-  Session (key, value) {
-    sessionStorage.setItem(key, JSON.stringify(value))
+  Session (key, data) {
+    const value = JSON.stringify(data)
+    SS.setItem(key, value)
   }
 }
 
 const del = {
   /**
    * Delete from LocalStorage a key
-   * @param {String} key
+   * @param {String} key Key to be deleted
    */
   fromLocal (key) {
-    localStorage.removeItem(key)
+    LS.removeItem(key)
   },
   /**
-   * Delete from SessionStorage a key
+   * Delete from SS a key
    * @param {String} key
    */
   fromSession (key) {
-    sessionStorage.removeItem(key)
+    SS.removeItem(key)
   },
   /**
    * Remove from the DOM an element
@@ -128,11 +134,10 @@ const listen = (event, func, target = d) => {
  * Compare the length of a String with a specified value and return it truncated if (str.length > maxLength),
  * @param {String} str string you want to analize
  * @param {Number} maxLength pos you want to cut the string if it is higher than
- * @param {*} sufix will be added at the end of the truncated string
+ * @param {String | Number } sufix will be added at the end of the truncated string
  */
 const truncate = (str, maxLength, sufix = '...') => {
-  if (str.length > maxLength) {
-    str = str.substring(0, --maxLength) + sufix
-  }
+  if (str.length > maxLength)
+    return str.substring(0, --maxLength) + sufix
   return str
 }
