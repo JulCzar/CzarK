@@ -39,4 +39,4 @@ export {}
 ``` 
 to the end of my file, exporting then the used, or all methods and classes, now you can import it from any other file of the project you are working at =)
 
-Hope this work can help anyone as it do for me =)
+Hope this work can help anyone as it do for me!
