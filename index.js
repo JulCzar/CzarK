@@ -113,7 +113,7 @@ const del = {
   },
   /**
    * Remove from the DOM an element
-   * @param {Element} elem
+   * @param {HTMLElement} elem
    */
   element (elem) {
     elem.remove()
@@ -124,7 +124,7 @@ const del = {
  * Adds an event listener to a target in DOM
  * @param {String} event Event that will be listened
  * @param {Function} func Function that will be executed when the event is located
- * @param {Element} target Target. (default = document)
+ * @param {HTMLElement} target Target. (default = document)
  */
 const listen = (event, func, target = d) => {
   target.addEventListener(event, func)
@@ -134,10 +134,11 @@ const listen = (event, func, target = d) => {
  * Compare the length of a String with a specified value and return it truncated if (str.length > maxLength),
  * @param {String} str string you want to analize
  * @param {Number} maxLength pos you want to cut the string if it is higher than
- * @param {String | Number } sufix will be added at the end of the truncated string
+ * @param {*} sufix will be added at the end of the truncated string
+ * ( default = '...' )
  */
 const truncate = (str, maxLength, sufix = '...') => {
   if (str.length > maxLength)
-    return str.substring(0, --maxLength) + sufix
+    return str.substring(0, maxLength) + sufix
   return str
 }
